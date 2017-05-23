@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Privat</string>
+    <string name="select_date">Select date:</string>
+    <string name="get_rates">Get rates</string>
+    <string name="enter_date">Enter date</string>
+    <string name="purchase_rate">Purchase rate:</string>
+    <string name="sale_rate">Sale rate:</string>
+    <string name="currency">Currency</string>
+    <string name="btn_clear">Clear</string>
+</resources>

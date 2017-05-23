@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/rateCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="?selectableItemBackground"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/cvImage"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/lblPurchaseRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="@string/purchase_rate"
+                android:layout_toRightOf="@+id/cvImage"
+                android:layout_toEndOf="@id/cvImage"/>
+
+            <TextView
+                android:id="@+id/lblSaleRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="@string/sale_rate"
+                android:layout_below="@+id/lblPurchaseRate"
+                android:layout_toRightOf="@+id/cvImage"
+                android:layout_toEndOf="@+id/cvImage" />
+
+            <TextView
+                android:id="@+id/lblCurrency"
+                android:layout_below="@+id/lblSaleRate"
+                android:layout_toRightOf="@id/cvImage"
+                android:text="@string/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
