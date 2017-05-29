@@ -24,6 +24,9 @@ public class ExchangeRateRecyclerViewAdapter extends RecyclerView.Adapter<Exchan
 
     private List<ExchangeRate> rateList = new ArrayList<>();
 
+    public ExchangeRateRecyclerViewAdapter() {
+    }
+
     public ExchangeRateRecyclerViewAdapter(List<ExchangeRate> rateList) {
         this.rateList = rateList;
     }
@@ -57,6 +60,16 @@ public class ExchangeRateRecyclerViewAdapter extends RecyclerView.Adapter<Exchan
     public void clear(){
         if(rateList!=null){
             rateList.clear();
+        }
+    }
+
+    public void update(List<ExchangeRate> rates){
+        if (rateList == null){
+            rateList = new ArrayList<>();
+            rateList.addAll(rates);
+        } else {
+            rateList.clear();
+            rateList.addAll(rates);
         }
     }
 

@@ -30,18 +30,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PrivatBankApiService extends Service {
 
     private static final String BASE_URL = "https://api.privatbank.ua/";
+    private static final String TAG = "Privat Bank Api Service";
 
     private Retrofit retrofit;
-    private PendingIntent pendingIntent;
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d("PrivatBankApiService: ", "onBind");
+        Log.d(TAG,"On bind");
         return null;
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG,"Started");
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -71,18 +72,15 @@ public class PrivatBankApiService extends Service {
 
                         @Override
                         public void onError(@NonNull Throwable e) {
-                            Log.e("Error: ", "Error during PrivatBankApi service");
+                            Log.e(TAG,"Error during request API");
                         }
 
                         @Override
                         public void onComplete() {
-
                         }
                     });
-        } else
-
-        {
-            Log.d("Error: ", "Empty date string");
+        } else {
+            Log.d(TAG,"Invalid date");
         }
         return super.onStartCommand(intent, flags, startId);
 
