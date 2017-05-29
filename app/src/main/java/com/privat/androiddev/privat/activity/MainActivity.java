@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private ExchangeRateRecyclerViewAdapter mAdapter = new ExchangeRateRecyclerViewAdapter(new ArrayList<ExchangeRate>());
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
     private EditText etDate;
     private DatePickerDialog datePickerDialog;
     private Archive currentArchive;
@@ -46,11 +45,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"On create");
         setContentView(R.layout.activity_main);
         etDate = (EditText) findViewById(R.id.etDate);
-        mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.exchangeRateRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,mLayoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(itemDecoration);
+
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int month, int day) {
-                        view.setBackgroundColor(Color.BLUE);
                         etDate.setText(day + "."
                                 + (month + 1) + "." + year);
 
@@ -96,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClearClick(View view) {
+        if(etDate!=null){
+            etDate.setText("");
+        }
         mAdapter.clear();
         mAdapter.notifyDataSetChanged();
     }
